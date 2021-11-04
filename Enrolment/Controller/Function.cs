@@ -10,6 +10,7 @@ public class Function : MenuControl
     public List<Subject> enrolmentList = new List<Subject>();
     // 관심 과목 추가한 목록을 담아둘 리스트 생성 
     public static List<Subject> interestList = new List<Subject>();
+
     // 텍스트 가져오기
     public void BringTextFile()
     {
@@ -33,8 +34,8 @@ public class Function : MenuControl
     // 한 줄씩 분리한 텍스트를 받아서 객체로 만들고 리스트에 넣는 메쏘드 
     public void DisassembleSubjects(string subject)
     {
-        string[] a = subject.Split('/');
-        Subject oneSubject = new Subject(a);
+        string[] fields = subject.Split('/');
+        Subject oneSubject = new Subject(fields);
         subjectList.Add(oneSubject);
     }
 
@@ -44,7 +45,7 @@ public class Function : MenuControl
         double unitTotal = 0;
         for (int i = 0; i < enrolmentList.Count; i++)
         {
-            unitTotal += double.Parse(enrolmentList[i].unit);
+            unitTotal += double.Parse(enrolmentList[i].Unit);
         }
         return unitTotal;
     }
@@ -55,7 +56,7 @@ public class Function : MenuControl
         double unitTotal = 0;
         for (int i = 0; i < interestList.Count; i++)
         {
-            unitTotal += double.Parse(interestList[i].unit);
+            unitTotal += double.Parse(interestList[i].Unit);
         }
         return unitTotal;
     }
@@ -65,7 +66,7 @@ public class Function : MenuControl
     {
         List<double> dayAndTime = new List<double>();
         // 요일, 시간, 요일, 시간 
-        string[] timeSplit1 = args.time.Split(' ');
+        string[] timeSplit1 = args.Time.Split(' ');
         // 홀수번째에서 요일 가져오고, 짝수번째에서 시간 가져오기 
         for (int i = 0; i < timeSplit1.Length; i++)
         {
@@ -189,33 +190,33 @@ public class Function : MenuControl
         {
             row = i + 14;
             Console.SetCursorPosition(0, row);
-            Console.Write(subjects[i].number);
+            Console.Write(subjects[i].Number);
             Console.SetCursorPosition(5, row);
-            Console.Write(subjects[i].major);
+            Console.Write(subjects[i].Major);
             Console.SetCursorPosition(23, row);
-            Console.Write(subjects[i].id);
+            Console.Write(subjects[i].Id);
             Console.SetCursorPosition(33, row);
-            Console.Write(subjects[i].group);
+            Console.Write(subjects[i].Group);
             Console.SetCursorPosition(38, row);
-            Console.Write(subjects[i].name);
+            Console.Write(subjects[i].Name);
             Console.SetCursorPosition(61, row);
-            Console.Write(subjects[i].division);
+            Console.Write(subjects[i].Division);
             Console.SetCursorPosition(71, row);
-            Console.Write(subjects[i].grade);
+            Console.Write(subjects[i].Grade);
             Console.SetCursorPosition(75, row);
-            Console.Write(subjects[i].unit);
+            Console.Write(subjects[i].Unit);
             Console.SetCursorPosition(81, row);
-            Console.Write(subjects[i].time);
+            Console.Write(subjects[i].Time);
             Console.SetCursorPosition(126, row);
-            Console.Write(subjects[i].classroom);
+            Console.Write(subjects[i].Classroom);
             Console.SetCursorPosition(142, row);
-            Console.Write(subjects[i].professor);
+            Console.Write(subjects[i].Professor);
             Console.SetCursorPosition(166, row);
-            Console.Write(subjects[i].language);
+            Console.Write(subjects[i].Language);
             Console.SetCursorPosition(176, row);
-            Console.Write(subjects[i].enrollment);
+            Console.Write(subjects[i].Enrolment);
             Console.SetCursorPosition(182, row);
-            Console.WriteLine(subjects[i].interest);
+            Console.WriteLine(subjects[i].Interest);
         }
     }
 
@@ -244,12 +245,12 @@ public class Function : MenuControl
 
             for (int i = 0; i < searchedList.Count; i++)
             {
-                if (searchedList[i].number == newinput)
+                if (searchedList[i].Number == newinput)
                 {
                     // 검색 결과 내에 입력한 값이 있는데 오류가 발생한 경우이기 때문에 true로 바꿔준다 
                     isNewinputValid = true;
 
-                    if (SumTotalInterestUnit() + double.Parse(searchedList[i].unit) > 21)
+                    if (SumTotalInterestUnit() + double.Parse(searchedList[i].Unit) > 21)
                     {
                         Console.WriteLine();
                         Console.WriteLine("21학점을 초과합니다. 다시 입력해보세요. ");
@@ -260,7 +261,7 @@ public class Function : MenuControl
                     {
                         for (int j = 0; j < interestList.Count; j++)
                         {
-                            if (searchedList[i].id == interestList[j].id)
+                            if (searchedList[i].Id == interestList[j].Id)
                             {
                                 Console.WriteLine();
                                 Console.WriteLine("해당 학수번호의 과목은 이미 관심 과목에 추가되어있습니다. 다시 입력해보세요: ");
@@ -284,9 +285,9 @@ public class Function : MenuControl
                         Console.WriteLine("해당 과목을 관심 과목으로 추가했습니다.");
                         for (int j = 0; j < subjectList.Count; j++)
                         {
-                            if (searchedList[i].number == subjectList[j].number)
+                            if (searchedList[i].Number == subjectList[j].Number)
                             {
-                                subjectList[j].interest = "O";
+                                subjectList[j].Interest = "O";
                                 interestList.Add(subjectList[j]);
                                 break;
                             }
@@ -305,7 +306,7 @@ public class Function : MenuControl
                 Console.WriteLine();
                 Console.WriteLine("검색 결과에 해당 번호의 과목이 없습니다. 다시 입력해보세요. ");
             }
-            else
+            else if (interestSuccess == true)
             {
                 // 나중에 여기서도 ESC / Enter 동시에 입력받을 수 있게 하면 좋을 듯.
                 // 지금은 Enter키만 동작함.
@@ -331,12 +332,12 @@ public void AddToEnrollmentList(bool isEnrolmentDone, List<Subject> searchedList
 
             for (int i = 0; i < searchedList.Count; i++)
             {
-                if (searchedList[i].number == newinput)
+                if (searchedList[i].Number == newinput)
                 {
                     // 검색 결과 내에 입력한 값이 있는데 오류가 발생한 경우이기 때문에 true로 바꿔준다 
                     isNewinputValid = true;
 
-                    if (SumTotalUnit() + double.Parse(searchedList[i].unit) > 21)
+                    if (SumTotalUnit() + double.Parse(searchedList[i].Unit) > 21)
                     {
                         Console.WriteLine();
                         Console.WriteLine("21학점을 초과합니다. 다시 입력해보세요. ");
@@ -347,7 +348,7 @@ public void AddToEnrollmentList(bool isEnrolmentDone, List<Subject> searchedList
                     {
                         for (int j = 0; j < enrolmentList.Count; j++)
                         {
-                            if (searchedList[i].id == enrolmentList[j].id)
+                            if (searchedList[i].Id == enrolmentList[j].Id)
                             {
                                 Console.WriteLine();
                                 Console.WriteLine("해당 학수번호의 과목은 이미 수강 신청되어있습니다. 다시 입력해보세요. ");
@@ -372,9 +373,9 @@ public void AddToEnrollmentList(bool isEnrolmentDone, List<Subject> searchedList
                         // 검색 리스트의 번호와 같은 과목 리스트의 수강 신청 여부를 업데이트하고 수강 신청 리스트에 추가 
                         for (int j = 0; j < subjectList.Count; j++)
                         {
-                            if (searchedList[i].number == subjectList[j].number)
+                            if (searchedList[i].Number == subjectList[j].Number)
                             {
-                                subjectList[j].enrollment = "O";
+                                subjectList[j].Enrolment = "O";
                                 enrolmentList.Add(subjectList[j]);
                                 break;
                             }
@@ -393,7 +394,7 @@ public void AddToEnrollmentList(bool isEnrolmentDone, List<Subject> searchedList
                 Console.WriteLine();
                 Console.WriteLine("검색 결과에 해당 번호의 과목이 없습니다. 다시 입력해보세요. ");
             }
-            else
+            else if (enrolSuccess == true)
             {
                 // 나중에 여기서도 ESC / Enter 동시에 입력받을 수 있게 하면 좋을 듯.
                 // 지금은 Enter키만 동작함.

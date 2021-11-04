@@ -175,40 +175,38 @@ public class PrintView : Function
     {
         while (true)
         {
+            bool isThereSearchResult = false;
             PrintTitle();
             Console.Write("개설 학과 전공으로 검색: ");
 
             List<Subject> searchedList = new List<Subject>();
 
-            bool isThereSearchResult = false;
-            while (!isThereSearchResult)
+            string input = ReadString();
+            if (input == "\0")
             {
-                string input = ReadString();
+                break;
+            }
 
-                if (input == "\0")
+            for (int i = 0; i < 20; i++)
+            {
+                if (subjectList[i].Major.Contains(input))
                 {
-                    break;
+                    searchedList.Add(subjectList[i]);
+                    isThereSearchResult = true;
                 }
+                else { }
+            }
 
-                for (int i = 0; i < 20; i++)
-                {
-                    if (subjectList[i].major.Contains(input))
-                    {
-                        searchedList.Add(subjectList[i]);
-                        isThereSearchResult = true;
-                    }
-                    else { }
-                }
-
-                if (isThereSearchResult != true)
-                {
-                    Console.WriteLine();
-                    Console.WriteLine("검색 결과가 없습니다. 다시 검색해보세요: ");
-                }
-                else
-                {
-                    PrintList(searchedList);
-                }
+            if (isThereSearchResult != true)
+            {
+                Console.WriteLine();
+                Console.WriteLine("검색 결과가 없습니다. Enter를 눌러 다시 검색해보세요. ");
+                while (Console.ReadKey().Key != ConsoleKey.Enter) { }
+            }
+            else
+            {
+                Console.WriteLine();
+                PrintList(searchedList);
             }
 
             bool isEnrolmentDone = true;
@@ -216,11 +214,7 @@ public class PrintView : Function
             {
                 isEnrolmentDone = false;
             }
-
             AddToEnrollmentList(isEnrolmentDone, searchedList);
-
-            Escape();
-            break;
         }
     }
 
@@ -229,45 +223,45 @@ public class PrintView : Function
     {
         while (true)
         {
+            bool isThereSearchResult = false;
             PrintTitle();
             Console.Write("학수 번호로 검색: ");
 
             List<Subject> searchedList = new List<Subject>();
 
-            bool isThereSearchResult = false;
-            while (!isThereSearchResult)
+            string input = ReadString();
+            if (input == "\0")
             {
-                string input = ReadString();
-
-                if (input == "\0")
-                {
-                    break;
-                }
-                for (int i = 0; i < 20; i++)
-                {
-                    if (subjectList[i].id.Contains(input))
-                    {
-                        searchedList.Add(subjectList[i]);
-                        isThereSearchResult = true;
-                    }
-                    else { }
-                }
-
-                if (isThereSearchResult != true)
-                {
-                    Console.WriteLine("검색 결과가 없습니다. 다시 검색해보세요: ");
-                }
-                else
-                {
-                    PrintList(searchedList);
-                }
+                break;
             }
+
+            for (int i = 0; i < 20; i++)
+            {
+                if (subjectList[i].Id.Contains(input))
+                {
+                    searchedList.Add(subjectList[i]);
+                    isThereSearchResult = true;
+                }
+                else { }
+            }
+
+            if (isThereSearchResult != true)
+            {
+                Console.WriteLine();
+                Console.WriteLine("검색 결과가 없습니다. Enter를 눌러 다시 검색해보세요. ");
+                while (Console.ReadKey().Key != ConsoleKey.Enter) { }
+            }
+            else
+            {
+                Console.WriteLine();
+                PrintList(searchedList);
+            }
+
             bool isEnrolmentDone = true;
             if (isThereSearchResult == true)
             {
                 isEnrolmentDone = false;
             }
-
             AddToEnrollmentList(isEnrolmentDone, searchedList);
         }
     }
@@ -277,49 +271,46 @@ public class PrintView : Function
     {
         while (true)
         {
+            bool isThereSearchResult = false;
             PrintTitle();
             Console.Write("교과목 명으로 검색: ");
 
             List<Subject> searchedList = new List<Subject>();
 
-            bool isThereSearchResult = false;
-            while (!isThereSearchResult)
+            string input = ReadString();
+            if (input == "\0")
             {
-                string input = ReadString();
-
-                if (input == "\0")
-                {
-                    break;
-                }
-                for (int i = 0; i < 20; i++)
-                {
-                    if (subjectList[i].name.Contains(input))
-                    {
-                        searchedList.Add(subjectList[i]);
-                        isThereSearchResult = true;
-                    }
-                    else { }
-                }
-
-                if (isThereSearchResult != true)
-                {
-                    Console.WriteLine("검색 결과가 없습니다. 다시 검색해보세요: ");
-                }
-                else
-                {
-                    PrintList(searchedList);
-                }
+                break;
             }
+
+            for (int i = 0; i < 20; i++)
+            {
+                if (subjectList[i].Name.Contains(input))
+                {
+                    searchedList.Add(subjectList[i]);
+                    isThereSearchResult = true;
+                }
+                else { }
+            }
+
+            if (isThereSearchResult != true)
+            {
+                Console.WriteLine();
+                Console.WriteLine("검색 결과가 없습니다. Enter를 눌러 다시 검색해보세요. ");
+                while (Console.ReadKey().Key != ConsoleKey.Enter) { }
+            }
+            else
+            {
+                Console.WriteLine();
+                PrintList(searchedList);
+            }
+
             bool isEnrolmentDone = true;
             if (isThereSearchResult == true)
             {
                 isEnrolmentDone = false;
             }
-
             AddToEnrollmentList(isEnrolmentDone, searchedList);
-
-            Escape();
-            break;
         }
     }
 
@@ -328,49 +319,46 @@ public class PrintView : Function
     {
         while (true)
         {
+            bool isThereSearchResult = false;
             PrintTitle();
             Console.Write("강의 대상 학년으로 검색: ");
 
             List<Subject> searchedList = new List<Subject>();
 
-            bool isThereSearchResult = false;
-            while (!isThereSearchResult)
+            string input = ReadString();
+            if (input == "\0")
             {
-                string input = ReadString();
-
-                if (input == "\0")
-                {
-                    break;
-                }
-                for (int i = 0; i < 20; i++)
-                {
-                    if (subjectList[i].grade.Contains(input))
-                    {
-                        searchedList.Add(subjectList[i]);
-                        isThereSearchResult = true;
-                    }
-                    else { }
-                }
-
-                if (isThereSearchResult != true)
-                {
-                    Console.WriteLine("검색 결과가 없습니다. 다시 검색해보세요: ");
-                }
-                else
-                {
-                    PrintList(searchedList);
-                }
+                break;
             }
+
+            for (int i = 0; i < 20; i++)
+            {
+                if (subjectList[i].Grade.Contains(input))
+                {
+                    searchedList.Add(subjectList[i]);
+                    isThereSearchResult = true;
+                }
+                else { }
+            }
+
+            if (isThereSearchResult != true)
+            {
+                Console.WriteLine();
+                Console.WriteLine("검색 결과가 없습니다. Enter를 눌러 다시 검색해보세요. ");
+                while (Console.ReadKey().Key != ConsoleKey.Enter) { }
+            }
+            else
+            {
+                Console.WriteLine();
+                PrintList(searchedList);
+            }
+
             bool isEnrolmentDone = true;
             if (isThereSearchResult == true)
             {
                 isEnrolmentDone = false;
             }
-
             AddToEnrollmentList(isEnrolmentDone, searchedList);
-
-            Escape();
-            break;
         }
     }
 
@@ -379,49 +367,46 @@ public class PrintView : Function
     {
         while (true)
         {
+            bool isThereSearchResult = false;
             PrintTitle();
             Console.Write("교수명으로 검색: ");
 
             List<Subject> searchedList = new List<Subject>();
 
-            bool isThereSearchResult = false;
-            while (!isThereSearchResult)
+            string input = ReadString();
+            if (input == "\0")
             {
-                string input = ReadString();
-
-                if (input == "\0")
-                {
-                    break;
-                }
-                for (int i = 0; i < 20; i++)
-                {
-                    if (subjectList[i].professor.Contains(input))
-                    {
-                        searchedList.Add(subjectList[i]);
-                        isThereSearchResult = true;
-                    }
-                    else { }
-                }
-
-                if (isThereSearchResult != true)
-                {
-                    Console.WriteLine("검색 결과가 없습니다. 다시 검색해보세요: ");
-                }
-                else
-                {
-                    PrintList(searchedList);
-                }
+                break;
             }
+
+            for (int i = 0; i < 20; i++)
+            {
+                if (subjectList[i].Professor.Contains(input))
+                {
+                    searchedList.Add(subjectList[i]);
+                    isThereSearchResult = true;
+                }
+                else { }
+            }
+
+            if (isThereSearchResult != true)
+            {
+                Console.WriteLine();
+                Console.WriteLine("검색 결과가 없습니다. Enter를 눌러 다시 검색해보세요. ");
+                while (Console.ReadKey().Key != ConsoleKey.Enter) { }
+            }
+            else
+            {
+                Console.WriteLine();
+                PrintList(searchedList);
+            }
+
             bool isEnrolmentDone = true;
             if (isThereSearchResult == true)
             {
                 isEnrolmentDone = false;
             }
-
             AddToEnrollmentList(isEnrolmentDone, searchedList);
-
-            Escape();
-            break;
         }
     }
 
@@ -463,14 +448,14 @@ public class PrintView : Function
             bool isInputValid = false;
             for (int i = 0; i < enrolmentList.Count; i++)
             {
-                if (input == enrolmentList[i].number)
+                if (input == enrolmentList[i].Number)
                 {
                     Console.WriteLine("해당 과목이 삭제되었습니다.");
                     for (int j = 0; j < subjectList.Count; j++)
                     {
-                        if (enrolmentList[i].number == subjectList[j].number)
+                        if (enrolmentList[i].Number == subjectList[j].Number)
                         {
-                            subjectList[j].enrollment = "";
+                            subjectList[j].Enrolment = "";
                             enrolmentList.RemoveAt(i);
                             break;
                         }
@@ -587,7 +572,7 @@ public class PrintView : Function
             }
             for (int i = 0; i < 20; i++)
             {
-                if (subjectList[i].major.Contains(input))
+                if (subjectList[i].Major.Contains(input))
                 {
                     searchedList.Add(subjectList[i]);
                     isThereSearchResult = true;
@@ -621,7 +606,7 @@ public class PrintView : Function
             string input = Console.ReadLine();
             for (int i = 0; i < 20; i++)
             {
-                if (subjectList[i].id.Contains(input))
+                if (subjectList[i].Id.Contains(input))
                 {
                     searchedList.Add(subjectList[i]);
                     isThereSearchResult = true;
@@ -655,7 +640,7 @@ public class PrintView : Function
             string input = Console.ReadLine();
             for (int i = 0; i < 20; i++)
             {
-                if (subjectList[i].name.Contains(input))
+                if (subjectList[i].Name.Contains(input))
                 {
                     searchedList.Add(subjectList[i]);
                     isThereSearchResult = true;
@@ -689,7 +674,7 @@ public class PrintView : Function
             string input = Console.ReadLine();
             for (int i = 0; i < 20; i++)
             {
-                if (subjectList[i].grade.Contains(input))
+                if (subjectList[i].Grade.Contains(input))
                 {
                     searchedList.Add(subjectList[i]);
                     isThereSearchResult = true;
@@ -723,7 +708,7 @@ public class PrintView : Function
             string input = Console.ReadLine();
             for (int i = 0; i < 20; i++)
             {
-                if (subjectList[i].professor.Contains(input))
+                if (subjectList[i].Professor.Contains(input))
                 {
                     searchedList.Add(subjectList[i]);
                     isThereSearchResult = true;
@@ -1116,17 +1101,17 @@ public class PrintView : Function
             }
 
             bool isInputValid = false;
-            for (int i = 0; i < enrolmentList.Count; i++)
+            for (int i = 0; i < interestList.Count; i++)
             {
-                if (input == enrolmentList[i].number)
+                if (input == interestList[i].Number)
                 {
                     Console.WriteLine("해당 과목이 삭제되었습니다.");
                     for (int j = 0; j < subjectList.Count; j++)
                     {
-                        if (enrolmentList[i].number == subjectList[j].number)
+                        if (interestList[i].Number == subjectList[j].Number)
                         {
-                            subjectList[j].enrollment = "";
-                            enrolmentList.RemoveAt(i);
+                            subjectList[j].Interest = "";
+                            interestList.RemoveAt(i);
                             break;
                         }
                         else { }
@@ -1140,7 +1125,7 @@ public class PrintView : Function
             if (isInputValid == false)
             {
                 Console.WriteLine();
-                Console.WriteLine("수강 신청 목록 중에 입력하신 번호에 해당하는 과목이 없습니다. Enter 키를 눌러 다시 입력하세요. ");
+                Console.WriteLine("관심 과목 목록 중에 입력하신 번호에 해당하는 과목이 없습니다. Enter 키를 눌러 다시 입력하세요. ");
                 while (Console.ReadKey().Key != ConsoleKey.Enter) { }
             }
             else { }
@@ -1156,9 +1141,8 @@ public class PrintView : Function
 
         Console.WriteLine();
         Console.WriteLine("내가 수강 신청한 총 학점: " + SumTotalInterestUnit());
-        Console.WriteLine("뒤로 돌아가려면 ESC를 누르세요.");
-        while (Console.ReadKey().Key != ConsoleKey.Escape) { }
-        PrintScreen_1();
+
+        Escape();
     }
 
     // 2-4 화면: 전체 강의 목록
@@ -1168,10 +1152,7 @@ public class PrintView : Function
 
         PrintList(subjectList);
 
-        Console.WriteLine();
-        Console.WriteLine("뒤로 돌아가려면 ESC를 누르세요.");
-        while (Console.ReadKey().Key != ConsoleKey.Escape) { }
-        PrintScreen_1();
+        Escape();
     }
 
 
@@ -1304,112 +1285,112 @@ public class PrintView : Function
                         case 9:
                             row = 11;
                             Console.SetCursorPosition(column, row);
-                            Console.WriteLine(enrolmentList[i].name);
+                            Console.WriteLine(enrolmentList[i].Name);
                             break;
                         case 9.5:
                             row = 13;
                             Console.SetCursorPosition(column, row);
-                            Console.WriteLine(enrolmentList[i].name);
+                            Console.WriteLine(enrolmentList[i].Name);
                             break;
                         case 10:
                             row = 15;
                             Console.SetCursorPosition(column, row);
-                            Console.WriteLine(enrolmentList[i].name);
+                            Console.WriteLine(enrolmentList[i].Name);
                             break;
                         case 10.5:
                             row = 17;
                             Console.SetCursorPosition(column, row);
-                            Console.WriteLine(enrolmentList[i].name);
+                            Console.WriteLine(enrolmentList[i].Name);
                             break;
                         case 11:
                             row = 19;
                             Console.SetCursorPosition(column, row);
-                            Console.WriteLine(enrolmentList[i].name);
+                            Console.WriteLine(enrolmentList[i].Name);
                             break;
                         case 11.5:
                             row = 21;
                             Console.SetCursorPosition(column, row);
-                            Console.WriteLine(enrolmentList[i].name);
+                            Console.WriteLine(enrolmentList[i].Name);
                             break;
                         case 12:
                             row = 23;
                             Console.SetCursorPosition(column, row);
-                            Console.WriteLine(enrolmentList[i].name);
+                            Console.WriteLine(enrolmentList[i].Name);
                             break;
                         case 12.5:
                             row = 25;
                             Console.SetCursorPosition(column, row);
-                            Console.WriteLine(enrolmentList[i].name);
+                            Console.WriteLine(enrolmentList[i].Name);
                             break;
                         case 13:
                             row = 27;
                             Console.SetCursorPosition(column, row);
-                            Console.WriteLine(enrolmentList[i].name);
+                            Console.WriteLine(enrolmentList[i].Name);
                             break;
                         case 13.5:
                             row = 29;
                             Console.SetCursorPosition(column, row);
-                            Console.WriteLine(enrolmentList[i].name);
+                            Console.WriteLine(enrolmentList[i].Name);
                             break;
                         case 14:
                             row = 31;
                             Console.SetCursorPosition(column, row);
-                            Console.WriteLine(enrolmentList[i].name);
+                            Console.WriteLine(enrolmentList[i].Name);
                             break;
                         case 14.5:
                             row = 33;
                             Console.SetCursorPosition(column, row);
-                            Console.WriteLine(enrolmentList[i].name);
+                            Console.WriteLine(enrolmentList[i].Name);
                             break;
                         case 15:
                             row = 35;
                             Console.SetCursorPosition(column, row);
-                            Console.WriteLine(enrolmentList[i].name);
+                            Console.WriteLine(enrolmentList[i].Name);
                             break;
                         case 15.5:
                             row = 37;
                             Console.SetCursorPosition(column, row);
-                            Console.WriteLine(enrolmentList[i].name);
+                            Console.WriteLine(enrolmentList[i].Name);
                             break;
                         case 16:
                             row = 39;
                             Console.SetCursorPosition(column, row);
-                            Console.WriteLine(enrolmentList[i].name);
+                            Console.WriteLine(enrolmentList[i].Name);
                             break;
                         case 16.5:
                             row = 41;
                             Console.SetCursorPosition(column, row);
-                            Console.WriteLine(enrolmentList[i].name);
+                            Console.WriteLine(enrolmentList[i].Name);
                             break;
                         case 17:
                             row = 43;
                             Console.SetCursorPosition(column, row);
-                            Console.WriteLine(enrolmentList[i].name);
+                            Console.WriteLine(enrolmentList[i].Name);
                             break;
                         case 17.5:
                             row = 45;
                             Console.SetCursorPosition(column, row);
-                            Console.WriteLine(enrolmentList[i].name);
+                            Console.WriteLine(enrolmentList[i].Name);
                             break;
                         case 18:
                             row = 47;
                             Console.SetCursorPosition(column, row);
-                            Console.WriteLine(enrolmentList[i].name);
+                            Console.WriteLine(enrolmentList[i].Name);
                             break;
                         case 18.5:
                             row = 49;
                             Console.SetCursorPosition(column, row);
-                            Console.WriteLine(enrolmentList[i].name);
+                            Console.WriteLine(enrolmentList[i].Name);
                             break;
                         case 19:
                             row = 51;
                             Console.SetCursorPosition(column, row);
-                            Console.WriteLine(enrolmentList[i].name);
+                            Console.WriteLine(enrolmentList[i].Name);
                             break;
                         case 19.5:
                             row = 53;
                             Console.SetCursorPosition(column, row);
-                            Console.WriteLine(enrolmentList[i].name);
+                            Console.WriteLine(enrolmentList[i].Name);
                             break;
                         default:
                             break;

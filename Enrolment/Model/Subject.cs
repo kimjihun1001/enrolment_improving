@@ -75,19 +75,22 @@ public class Subject
         get; set;
     }
 
+    //private field여도 이렇게 매개변수로 받아서 설정할 수 있지 않나..?
+    //아하, get/set 사용하려고 property 사용했으니까 소문자가 아니라 대문자로 해야함!!!
+    // ex) number -> Number
     public Subject(string[] args)
     {
-        number = args[0];
-        major = args[1];
-        id = args[2];
-        group = args[3];
-        name = args[4];
-        division = args[5];
-        grade = args[6];
-        unit = args[7];
-        time = args[8];
-        classroom = args[9];
-        professor = args[10];
-        language = args[11];
+        Number = args[0];
+        Major = args[1];
+        Id = args[2];
+        Group = args[3];
+        Name = args[4];
+        Division = args[5];
+        Grade = args[6];
+        Unit = args[7];
+        Time = args[8];
+        Classroom = args[9];
+        Professor = args[10];
+        Language = args[11];
     }
 }

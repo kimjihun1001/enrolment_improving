@@ -418,7 +418,7 @@ public class PrintView : Function
         {
             PrintTitle();
             PrintList(interestList);
-            AddToEnrollmentList(true, interestList);
+            AddToEnrollmentList(false, interestList);
             Escape();
             break;
         }

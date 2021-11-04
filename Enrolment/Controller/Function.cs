@@ -403,4 +403,41 @@ public void AddToEnrollmentList(bool isEnrolmentDone, List<Subject> searchedList
             }
         }
     }
+
+    // 수강 신청 과목 리스트를 텍스트 파일로 내보내기
+    public void ExportToTextFile()
+    {
+        while (true)
+        {
+            string input = ReadString();
+            if (input == "\0")
+            {
+                break;
+            }
+
+            if (input == "Y" || input == "y")
+            {
+                List<string> text = new List<string>();
+                for (int i = 0; i < enrolmentList.Count; i++)
+                {
+                    string textOfSubject = enrolmentList[i].Number.ToString() + "\t" + enrolmentList[i].Number.ToString() + "\t" + enrolmentList[i].Major.ToString() + "\t" + enrolmentList[i].Id.ToString() + "\t" + enrolmentList[i].Group.ToString() + "\t" + enrolmentList[i].Name.ToString() + "\t" + enrolmentList[i].Division.ToString() + "\t" + enrolmentList[i].Grade.ToString() + "\t" + enrolmentList[i].Unit.ToString() + "\t" + enrolmentList[i].Time.ToString() + "\t" + enrolmentList[i].Classroom.ToString() + "\t" + enrolmentList[i].Professor.ToString() + "\t" + enrolmentList[i].Language.ToString();
+
+                    text.Add(textOfSubject);
+                }
+                using (StreamWriter outputFile = new StreamWriter(@"/Users/kimjihun/Desktop/New_TEXT_File.txt"))
+                {
+                    foreach (string line in text)
+                    {
+                        outputFile.WriteLine(line);
+                    }
+                }
+
+                break;
+            }
+            else
+            {
+                Console.WriteLine("다시 입력하세요");
+            }
+        }
+    }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 
 public class PrintView : Function
 {
@@ -486,6 +487,8 @@ public class PrintView : Function
 
         Console.WriteLine();
         Console.WriteLine("내가 수강 신청한 총 학점: " + SumTotalUnit());
+        Console.WriteLine("수강 과목 리스트를 텍스트 파일로 내보내려면 Y를 누르세요");
+        ExportToTextFile();
         Escape();
     }
 
